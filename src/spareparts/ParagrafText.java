@@ -94,14 +94,6 @@ public enum ParagrafText implements Serializable {
     }
 
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getText() {
         return text;
     }

@@ -3,14 +3,17 @@ import spareparts.ParagrafText;
 import java.util.Scanner;
 
 public class Action {
+    // Оставляем это поле статик, так как к нему обращаются Saver,
+    // с помощью него он понимает какой параграф подгрузить
     public static ParagrafText currentPar;
-    public static void printParText(ParagrafText text){
+
+    public  void printParText(ParagrafText text){
         System.out.println(text.getText()+"\n "+text.getMenu());
     }
-    public static void startAction(ParagrafText par){
+    public  void startAction(ParagrafText par){
           currentPar =  par;
-        printParText(currentPar);
-        Scanner scanner = new Scanner(System.in);
+          printParText(currentPar);
+         Scanner scanner = new Scanner(System.in);
 
         OUTER :  while(true){
            String input = scanner.nextLine();
@@ -24,7 +27,8 @@ public class Action {
                    currentPar = currentPar.getSecond();
                }
                case "3" ->{
-                   SecondMenu.secondMenu();
+                   SecondMenu secondMenu = new SecondMenu();
+                   secondMenu.secondMenu();
                }
                case "EXIT" ->{
                    System.exit(0);
@@ -32,7 +36,7 @@ public class Action {
                }
                default -> System.out.println("Wrong command, try another one");
            }
-            // через иф можно  equalsignoreCase  но ифами совсем не хотца портить код
+
         }
     }
 }

@@ -13,26 +13,21 @@ public class Loader {
     public Loader() {
         try {
             in= new ObjectInputStream(new FileInputStream("game.bin"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public ParagrafText getParagraph() {
-        try {
-           paragraph = (ParagrafText) in.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+            this.paragraph = (ParagrafText) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try {
                 in.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
-       return paragraph;
+    }
+
+    public ParagrafText getParagraph() {
+
+       return this.paragraph;
     }
 
 }
